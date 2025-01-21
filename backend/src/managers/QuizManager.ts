@@ -16,8 +16,8 @@ export class QuizManager {
     }
 
     public addProblem(roomId: string, problem: {
-        question: string;
-        image: string;
+        title: string;
+        image?: string;
         options: {
             id: number;
             text: string;
@@ -69,6 +69,7 @@ export class QuizManager {
 
     addQuiz(roomId: string) {
         if(this.getQuiz(roomId)) {
+            console.log("quiz already exists")
             return;
         }
         const quiz = new Quiz(roomId);

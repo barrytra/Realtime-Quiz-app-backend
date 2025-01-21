@@ -5,14 +5,12 @@ const QuizManager_1 = require("./QuizManager");
 const ADMIN_PASSWORD = "admin";
 class UserManager {
     constructor() {
-        this.users = [];
         this.quizManager = new QuizManager_1.QuizManager();
     }
-    addUser(roomId, socket) {
-        this.users.push({ roomId, socket });
-        this.createHandlers(roomId, socket);
+    addUser(socket) {
+        this.createHandlers(socket);
     }
-    createHandlers(roomId, socket) {
+    createHandlers(socket) {
         socket.on('join', (data) => {
             const userId = this.quizManager.addUser(data.roomId, data.name);
             socket.emit("userId", {
@@ -21,13 +19,13 @@ class UserManager {
             });
         });
         socket.on('join_admin', (data) => {
-            const userId = this.quizManager.addUser(data.roomId, data.name);
             if (data.password !== ADMIN_PASSWORD) {
                 return;
             }
-            socket.emit("adminInit", {
-                userId,
-                currentState: this.quizManager.getCurrentState(data.roomId),
+            console.log("join admin called");
+            socket.on("create_quiz", data => {
+                console.log("room created");
+                this.quizManager.addQuiz(data.roomId);
             });
             socket.on("create_problem", data => {
                 const roomId = data.roomId;

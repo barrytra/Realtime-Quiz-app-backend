@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.QuizManager = void 0;
+const Quiz_1 = require("../Quiz");
 let globalProblemId = 0;
 class QuizManager {
     constructor() {
@@ -49,6 +50,14 @@ class QuizManager {
     getLeaderboard(roomId) {
         var _a;
         return (_a = this.quizzes.find(quiz => quiz.getRoomId() === roomId)) === null || _a === void 0 ? void 0 : _a.getLeaderboard();
+    }
+    addQuiz(roomId) {
+        if (this.getQuiz(roomId)) {
+            console.log("quiz already exists");
+            return;
+        }
+        const quiz = new Quiz_1.Quiz(roomId);
+        this.quizzes.push(quiz);
     }
 }
 exports.QuizManager = QuizManager;
