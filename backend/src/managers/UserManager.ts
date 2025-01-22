@@ -15,7 +15,7 @@ export class UserManager {
     private createHandlers(socket: Socket) {
         socket.on('join', (data) => {
             const userId = this.quizManager.addUser(data.roomId, data.name)
-            socket.emit("userId", {
+            socket.emit("init", {
                 userId,
                 currentState: this.quizManager.getCurrentState(data.roomId),
             });  

@@ -32,6 +32,7 @@ class Quiz {
         this.setActiveProblem(this.problems[0]);
     }
     setActiveProblem(problem) {
+        console.log("setting active problem");
         this.currentState = "question";
         problem.startTime = new Date().getTime();
         problem.submissions = [];
@@ -43,6 +44,7 @@ class Quiz {
         }, PROBLEM_DURATION * 1000);
     }
     sendLeaderBoard() {
+        console.log("sending leaderboard");
         this.currentState = "leaderboard";
         const leaderboard = this.getLeaderboard();
         IoManager_1.IoManager.getIo().to(this.roomId).emit('LEADERBOARD', {

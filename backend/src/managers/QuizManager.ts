@@ -63,10 +63,6 @@ export class QuizManager {
         return null; 
     }
 
-    getLeaderboard(roomId: string) {
-        return this.quizzes.find(quiz => quiz.getRoomId() === roomId)?.getLeaderboard();
-    }
-
     addQuiz(roomId: string) {
         if(this.getQuiz(roomId)) {
             console.log("quiz already exists")

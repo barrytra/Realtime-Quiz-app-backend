@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import { Admin } from './components/Admin'
-import { User } from './components/user'
+import { User } from './components/User'
 
 function App() {
 

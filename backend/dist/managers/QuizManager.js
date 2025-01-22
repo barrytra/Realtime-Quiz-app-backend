@@ -47,10 +47,6 @@ class QuizManager {
         }
         return null;
     }
-    getLeaderboard(roomId) {
-        var _a;
-        return (_a = this.quizzes.find(quiz => quiz.getRoomId() === roomId)) === null || _a === void 0 ? void 0 : _a.getLeaderboard();
-    }
     addQuiz(roomId) {
         if (this.getQuiz(roomId)) {
             console.log("quiz already exists");
